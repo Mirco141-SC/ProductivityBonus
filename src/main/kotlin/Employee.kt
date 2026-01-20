@@ -1,5 +1,3 @@
-import java.nio.DoubleBuffer
-
 class Employee(val name:String, hereSinceValue:Int, dailyPayValue:Double, performanceCoefficientValue:Double) {
     init {
         require(name.isNotEmpty()){"The name of the employee must not be an empty value"}
@@ -11,24 +9,26 @@ class Employee(val name:String, hereSinceValue:Int, dailyPayValue:Double, perfor
 
     var hereSince:Int = hereSinceValue
         private set(value) {
-            require(hereSince >= 0){"The here since value must be higher or equal to 0"}
+            require(value >= 0){"The here since value must be higher or equal to 0"}
 
             field = value
         }
 
     var dailyPay:Double = dailyPayValue
         set(value) {
-            require(dailyPay > 0.0){"Pay your employees!! The value of the daily pay must be higher than 0!"}
+            require(value > 0.0){"Pay your employees!! The value of the daily pay must be higher than 0!"}
 
             field = value
         }
 
     var performanceCoefficient:Double = performanceCoefficientValue
         private set(value){
-            require(performanceCoefficient >= 0.0){"The performance coefficient must be 0 or higher"}
+            require(value >= 0.0){"The performance coefficient must be 0 or higher"}
 
             field = value
         }
+
+    //Yes, they are functions, not calculated fields, because I preferred it this way :)
 
     fun calculateStandardBonus(): Double {
         return 10.0 * dailyPay
